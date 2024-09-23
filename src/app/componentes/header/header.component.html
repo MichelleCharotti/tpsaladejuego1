@@ -1,0 +1,16 @@
+<nav>
+    <div class="left">
+       <img   src="../../../assets/iconogame.png" alt="i">
+   
+        <h1 >Sala de Juegos</h1>
+    </div>
+
+    <div class="right">
+        <strong *ngIf="usuario.datos">Bienvenido, {{usuario.nombre}}</strong>
+        <button routerLink="">Home</button>
+        <button routerLink="quien-soy">Quien Soy</button>
+        <button *ngIf="usuario.datos == undefined" routerLink="login">Login</button>
+        <button *ngIf="usuario.datos == undefined" routerLink="registro">Registro</button>
+        <button *ngIf="usuario.datos != undefined" (click)="cerrarSesion()">Cerrar Sesión</button>
+    </div>
+</nav>

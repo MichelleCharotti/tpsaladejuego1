@@ -1,0 +1,141 @@
+
+:host{
+     display: flex;
+     justify-content: center;
+     align-items: stretch;
+  }
+  
+//  .imagen{
+//   background-image: url("../../../assets/ahorcado.png");
+
+//   background-repeat: no-repeat;
+//   background-size: 80px 80px;
+//   display: flex;
+//      justify-content: center;
+//      align-items: center;
+//  }
+
+  p{
+    text-decoration: none;
+    margin: 1px;
+  }
+  
+  
+  .left{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    width: 400px;
+    width: 68vw;
+  }
+  
+  .right{
+    display: flex;
+    flex-direction: row;
+    height: 85vh;
+    width: 10vw;
+    justify-content: center;
+    margin-right: 1vw;
+  }
+  
+  ul{
+    list-style: none;
+  }
+  
+  .izquierda{
+    width: 30px;
+  }
+  
+  .derecha{
+    width: 300px;
+  }
+  
+  .centro{
+    width: 50px;
+  }
+  
+  .right button img{
+    width: 8vw;
+    max-height: 20vh;
+  }
+  button{
+    max-height: 20vh;
+    margin: 200px 20px;
+    padding: 20px;
+    background-color: #32cd32;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover{
+    background-color: #36b036;
+  }
+  
+  button p{
+    font-size: 1.2vw;
+    color: white;
+    text-align: center;
+    font-weight: 700;
+  }
+  
+  .list-pair{
+    display: flex;
+  }
+  
+  .list{
+    padding: 1px;
+    margin: 0px 10px;
+    width: 80%;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 20px;
+  }
+  
+  .list h3{
+    width: 100%;
+    padding: 5px 0px;
+    background-color: #32cd32;
+    border: 1px solid black;
+    border-radius: 20px;
+  }
+  
+  .lista-texto-izquierda{
+    display: inline-block;
+    width: 5%;
+    text-align: start;
+    margin-right: 5px;
+  }
+  
+  .lista-texto-centro{
+    display: inline-block;
+    width: 85%;
+    text-align: start;
+  }
+  
+  .lista-texto-derecha{
+    margin: 0px 5px;
+    display: inline-block;
+    width: 10%;
+    text-align: end;
+  }
+  
+  li{
+    font-size: 20px;
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid #333;
+  }
+  
+  ul{
+    width: 100%;
+  }
+  
