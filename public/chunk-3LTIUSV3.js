@@ -1,0 +1,1 @@
+import{Ga as m,u as t,ya as n,z as i}from"./chunk-EUQZFUPD.js";var u=[],r=class o{static \u0275fac=function(e){return new(e||o)};static \u0275mod=i({type:o});static \u0275inj=t({imports:[m.forChild(u),m]})};var s=class o{static \u0275fac=function(e){return new(e||o)};static \u0275mod=i({type:o});static \u0275inj=t({imports:[n,r]})};export{s as MayormenorModule};

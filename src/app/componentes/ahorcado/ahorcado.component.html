@@ -1,0 +1,22 @@
+<div class="ahorcado-contenedor">
+    <div class="ahorcado-imagen">
+      <img [src]="imagenAhorcado[errores]" alt="ahorcado imagen">
+    </div>
+    <div class="palabra-contenedor">
+      <h2 *ngIf="generandoPalabra" class="mensaje">Generando Nueva Palabra</h2>
+      <div *ngFor="let letra of palabra; let i = index" class="palabra-contenedor-letras">
+        <p *ngIf="letrasSeleccionadas.includes(letra)">{{letra}}</p>
+        <p *ngIf="!letrasSeleccionadas.includes(letra)">_</p>
+      </div>
+    </div>
+    <div class="contenedor-letras">
+      <button *ngFor="let letra of abecedario" [disabled]="letrasSeleccionadas.includes(letra) || mostrarMensajeFinal || generandoPalabra" (click)="intentarLetra(letra)" class="letras-botones">
+        {{letra}}
+      </button>
+    </div>
+    <div class="mensaje" *ngIf="mostrarMensajeFinal" [ngClass]="{'ganado': calcularVictoria(), 'perdio': calcularDerrota()}">
+      <h2>{{ mensajeFinal }}</h2>
+      <button (click)="nuevoJuego()">¿Jugar Otra Vez?</button>
+    </div>
+  </div>
+  

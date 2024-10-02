@@ -1,0 +1,39 @@
+<div class="contenedor">  
+
+    <h3>La Siguiente Carta: ¿Sera Menor o Mayor?</h3>
+    <div class="contenedor-imagenes">
+        <div class="carta-animacion-contenedor">
+            <div class="carta-animacion" [ngClass]="{'rotar': cartaVisible}">
+                <img class="carta-animacion-dorso" src="../../../assets/cartas/0.png">
+                <img class="carta-animacion-frente" [src]="imagenCartaVisible">
+            </div>
+        </div>
+        <div class="carta-animacion-contenedor">
+            <div class="carta-animacion" [ngClass]="{'rotar': cartaAdivinar}">
+                <img class="carta-animacion-dorso" src="../../../assets/cartas/0.png">
+                <img class="carta-animacion-frente" [src]="imagenCartaAdivinar">
+            </div>
+        </div>
+        <div class="mazo-cartas">
+            <div class="carta" *ngFor="let item of [].constructor(mazo.restantes); let i = index" [style.margin-top.px]="-i*1.5">
+                <img [src]="'../../../assets/cartas/flip'+ (i/2==0?'0':'0bis')+'.png'">
+            </div>
+        </div>
+    </div>
+    <div class="contenedor-botones">
+        <button class="mayor" (click)="adivinarMayor()" [disabled]="mostrarMensajeFinal || !cartaVisible">Mayor &gt;</button>
+        <button class="menor" (click)="adivinarMenor()" [disabled]="mostrarMensajeFinal || !cartaVisible">Menor &lt;</button>
+    </div>
+    <div class="mensaje" *ngIf="mostrarMensajeFinal" [ngClass]="{'ganado': estado == 0, 'perdido': estado == 1}">
+        <h2>{{mensajeFinal}}</h2>
+        <button (click)="generarNuevaRonda()">¿Jugar Otra Vez?</button>
+    </div>
+    <div class="puntaje-mazo">
+        <div class="puntaje">
+            Puntaje Actual: {{puntajeActual}} <br>
+            Cartas Restantes: {{mazo.restantes}}
+        </div>
+    </div>
+</div>
+
+

@@ -33,7 +33,11 @@ export class RegistroComponent {
     this.limpiarEspacios();
     let usuario: Usuario = {nombre: this.formularioRegistro.value.nombre,
                            password: this.formularioRegistro.value.password,
-                         };
+                           puntajeMaxAhorcado: 0,
+                           puntajeMaxMayorMenor: 0,
+                           puntajeMaxPreguntados: 0,
+                           puntajeMaxBuscamina: 0
+                          };
 
     this.dbUsuarios.guardarUsuario(usuario);
     this.login.iniciar(usuario)

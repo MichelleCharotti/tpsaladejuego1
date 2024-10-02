@@ -1,0 +1,19 @@
+<div class="pregunta">
+    <h2>Preguntados: </h2>
+    <p>{{quizzes[currentQuiz].question}} ?</p>
+    <img src="{{this.banderaPais.bandera}}" >
+</div>
+<div class="lista-respuestas">
+    <button *ngFor="let quiz of quizzes[currentQuiz].answer" 
+        (click)="seleccionarRespuesta(quiz.correct)"
+        [disabled]="mostrandoMensajeFinal || generandoPregunta"
+        class="respuesta" (change)="seleccionarRespuesta(quiz.option)"
+        [ngClass]="{'correcta': mostrandoMensajeFinal && quiz.correct, 'incorrecta': mostrandoMensajeFinal && !quiz.correct}">
+        {{quiz.option}}
+    </button>
+</div>
+<div *ngIf="mostrandoMensajeFinal" class="mensaje-final" [ngClass]="{'ganado': gano}">
+    <p>{{mensajeFinal}}</p>
+    <button (click)="iniciarJuego()">¿Otra Pregunta?</button>
+</div>
+

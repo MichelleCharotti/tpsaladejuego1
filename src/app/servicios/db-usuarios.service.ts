@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore,collection,addDoc,collectionData } from '@angular/fire/firestore';
+import { Firestore,collection,addDoc,collectionData, doc, updateDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Usuario } from '../interfaces/usuario';
 import { LogsSesion } from '../interfaces/logs-sesion';
@@ -31,7 +31,20 @@ export class DbUsuariosService {
     return addDoc(coleccion, log);
   }
 
+  actulizarPuntaje(tipo: TipoPuntaje, id: string, puntaje: number){
+    const col = collection(this.firestore, "usuarios");
+    const documento = doc(col, id);
+    let datos: { [key in TipoPuntaje]: number } = {} as any;
+    datos[tipo] = puntaje;
+    updateDoc(documento, datos);
+  }
 
 
+}
 
+export enum TipoPuntaje{
+  ahorcado = "puntajeMaxAhorcado",
+  buscamina = "puntajeMaxBuscamina",
+  mayorMenor= "puntajeMaxMayorMenor",
+  preguntados = "puntajeMaxPreguntados"
 }

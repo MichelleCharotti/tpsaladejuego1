@@ -1,0 +1,1 @@
+import{Aa as m,ta as n,u as t,z as i}from"./chunk-JBD45IN7.js";var u=[],r=class o{static \u0275fac=function(e){return new(e||o)};static \u0275mod=i({type:o});static \u0275inj=t({imports:[m.forChild(u),m]})};var c=class o{static \u0275fac=function(e){return new(e||o)};static \u0275mod=i({type:o});static \u0275inj=t({imports:[n,r]})};export{c as AhorcadoModule};
