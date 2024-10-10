@@ -1,12 +1,11 @@
 <div class="contenedor">
-   <h2> Tablero: </h2> 
+   <h2 class="titulo"> Buscamina: </h2> 
     <table>
         <tr *ngFor="let row of board.cells; index as y">
         <td
             *ngFor="let cell of row; index as x"
             (click)="checkCell(cell)"
-            (contextmenu)="$event.preventDefault(); flag(cell)"
-        >
+            (contextmenu)="$event.preventDefault(); flag(cell)">
           
             <div *ngIf="cell.status === 'clear' && !cell.mine">{{ cell.proximaMinas }}</div>
             <div *ngIf="cell.status === 'flag'">

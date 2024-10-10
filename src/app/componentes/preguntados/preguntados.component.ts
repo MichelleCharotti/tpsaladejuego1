@@ -55,11 +55,15 @@ export class PreguntadosComponent {
     seleccionarRespuesta(estado: boolean){
     if(estado){
       this.ganar();
+      this.mostrandoMensajeFinal = true;
+      setTimeout(()=>{
+        this.iniciarJuego();
+      },1500);
     }
     else{
       this.perder();
+      this.mostrandoMensajeFinal = true;
     }
-    this.mostrandoMensajeFinal = true;
     }
   
     private ganar(){
@@ -69,7 +73,7 @@ export class PreguntadosComponent {
       }
     
     this.gano = true;
-    this.mensajeFinal="RESPUESTA CORRECTA!!";
+    this.mensajeFinal="RESPUESTA CORRECTA!! ";
     }
   
     private perder(){

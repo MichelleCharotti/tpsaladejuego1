@@ -21,4 +21,8 @@ export class DbMensajesService {
     const q = query(coleccion, orderBy("hora", "desc"), limit(100));
     return collectionData(q) as Observable<Mensaje[]>;
   }
+
+  
 }
+
+

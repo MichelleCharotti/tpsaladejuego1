@@ -2,8 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router,RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 import { UsuarioService } from '../../servicios/usuario.service';
-import { DbUsuariosService } from '../../servicios/db-usuarios.service';
+import { DbUsuariosService, TipoPuntaje } from '../../servicios/db-usuarios.service';
 import { Subscription } from 'rxjs';
+import { Usuario } from '../../interfaces/usuario';
 
 
 @Component({
@@ -15,9 +16,16 @@ import { Subscription } from 'rxjs';
 })
 export class HomeComponent {
   private subscripcion:  Array<Subscription> = [];
+  public topAhorcado: Array<Usuario> = [];
+  public topPreguntados: Array<Usuario> = [];
+  public topMayorMenor: Array<Usuario> = [];
+  public topBuscamina: Array<Usuario> = [];
 
   constructor(private _usuario: UsuarioService, private db: DbUsuariosService) {
-    
+    this.obtenerTopAhorcado();
+    this.obtenerTopMayorMenor();
+    this.obtenerTopPreguntados();
+    this.obtenerTopBuscamina();
   }
 
   ngOnDestroy(){
@@ -32,4 +40,31 @@ export class HomeComponent {
     return this._usuario;
   }
 
+  private obtenerTopAhorcado(){
+    const sub = this.db.obtenerTop(TipoPuntaje.ahorcado).subscribe(datos=>{
+      this.topAhorcado = datos;
+    })
+    this.subscripcion.push(sub);
+  }
+
+  private obtenerTopMayorMenor(){
+    const sub = this.db.obtenerTop(TipoPuntaje.mayorMenor).subscribe(datos=>{
+      this.topMayorMenor = datos;
+    })
+    this.subscripcion.push(sub);
+  }
+
+  private obtenerTopPreguntados(){
+    const sub = this.db.obtenerTop(TipoPuntaje.preguntados).subscribe(datos=>{
+      this.topPreguntados = datos;
+    })
+    this.subscripcion.push(sub);
+  }
+
+  private obtenerTopBuscamina(){
+    const sub = this.db.obtenerTop(TipoPuntaje.buscamina).subscribe(datos=>{
+      this.topBuscamina= datos;
+    })
+    this.subscripcion.push(sub);
+  }
 }

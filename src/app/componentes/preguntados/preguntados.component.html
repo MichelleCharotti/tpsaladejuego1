@@ -1,6 +1,6 @@
 <div class="pregunta">
     <h2>Preguntados: </h2>
-    <p>{{quizzes[currentQuiz].question}} ?</p>
+    <p ngClass="{{quizzes[currentQuiz].country}}"> A que pais corresponde la bandera?</p>
     <img src="{{this.banderaPais.bandera}}" >
 </div>
 <div class="lista-respuestas">
@@ -14,6 +14,6 @@
 </div>
 <div *ngIf="mostrandoMensajeFinal" class="mensaje-final" [ngClass]="{'ganado': gano}">
     <p>{{mensajeFinal}}</p>
-    <button (click)="iniciarJuego()">¿Otra Pregunta?</button>
+    <button *ngIf="!gano"  (click)="iniciarJuego()">¿Otra Pregunta?</button>
 </div>
 

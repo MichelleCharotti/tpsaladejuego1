@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
+
+
+</head>
+
+<body class="bg-light encuesta">
+
+    <div class="container" >
+        <main>
+            <div class="py-5 text-center">
+                <h2>Encuesta</h2>
+            </div>
+
+            <div class="row g-5">
+                    <form [formGroup]="formRepartidor" >
+                        <div class="row g-3">
+                                <label for="lastName" class="form-label">Apellido</label>
+                                <input type="text" class="form-control" id="apellido" placeholder="Apellido" formControlName="apellido">
+                                <p class="text-danger" *ngIf="formRepartidor.get('apellido')?.errors">Apellido requerido</p>
+                        </div>
+
+
+                            <label for="firstName" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" placeholder="Nombre"
+                                formControlName="nombre">
+                            <p class="text-danger" *ngIf="formRepartidor.get('nombre')?.errors">Nombre requerido</p>
+
+                            <label for="address" class="form-label">Edad</label>
+                            <input type="number" class="form-control" id="edad" placeholder="Edad" formControlName="edad" min="18" max="99">
+                            <p class="text-danger" *ngIf="formRepartidor.get('edad')?.errors">edad requerida</p>
+                            <p class="text-danger" *ngIf="edadGet?.errors?.['min']" class="warningForm">
+                                debe ser mayor a 18
+                            </p>
+                            <p class="text-danger" *ngIf="edadGet?.errors?.['max']" class="warningForm">
+                                debe ser menor a 99
+                            </p>
+ 
+                            <label for="address" class="form-label">Numero de telefono</label>
+                            <input type="number" class="form-control" id="numero" placeholder="Numero"
+                                formControlName="numero" maxlength="10">
+                            <p class="text-danger" *ngIf="formRepartidor.get('numero')?.errors">numero requerido</p>
+                            <p class="text-danger" *ngIf="numeroGet?.errors?.['maxLength']"  class="warningForm">
+                                deben ser menos de 10 numeros
+                            </p>
+
+
+
+                            <label for="address" class="form-label">Como calificarias la pagina? {{encuestado.rango}} /10</label>
+                            <input type="range" name="rango" id="rango" min="0" max="10" value="0"
+                            [(ngModel)]="encuestado.rango" [ngModelOptions]="{standalone: true}" class="form-control">
+
+
+
+                            <label for="address" class="form-label">Como se autopercibe?</label>
+                            <br>
+                            <input type="radio" formControlName="genero" value="hombre" > Hombre
+                            <br>
+                            <input type="radio" formControlName="genero" value="mujer"> Mujer
+                            <br>
+                            <input type="radio" formControlName="genero" value="otro"> No Binario / Otros
+                            <br>
+                            <p class="text-danger" *ngIf="formRepartidor.get('genero')?.errors">genero requerido</p>
+
+
+                        <div class="col-md-11">
+                            <label for="address" class="form-label">Se siente conforme con el diseño?&nbsp;</label>
+                            <input type="checkbox" name="conforme" id="conforme" formControlName="conforme">SI
+                        </div>
+
+                        <hr class="my-4">
+
+                        <button class="w-100 btn btn-primary btn-lg" type="submit" [disabled]="formRepartidor.invalid"
+                            (click)="enviar()">Enviar</button>
+
+                    </form>
+            </div>
+        </main>
+
+    </div>
+
+
+    <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

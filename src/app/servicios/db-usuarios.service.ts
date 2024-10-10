@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Firestore,collection,addDoc,collectionData, doc, updateDoc } from '@angular/fire/firestore';
+import { Firestore,collection,addDoc,collectionData, doc, updateDoc, where, orderBy, limit, query, getFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Usuario } from '../interfaces/usuario';
 import { LogsSesion } from '../interfaces/logs-sesion';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DbUsuariosService {
 
-  constructor(private firestore: Firestore) { }
+
+  constructor(private firestore: Firestore) { 
+  }
 
   guardarUsuario(usuario: Usuario){
     const coleccion = collection(this.firestore, "usuarios");
@@ -39,7 +42,14 @@ export class DbUsuariosService {
     updateDoc(documento, datos);
   }
 
+  obtenerTop(tipo: TipoPuntaje){
+    const col = collection(this.firestore, "usuarios");
+    const q = query(col, where(tipo.toString(), ">", 0), orderBy(tipo.toString(), "desc"), limit(5));
+    return collectionData(q) as Observable<Usuario[]>;
+  }
 
+
+  
 }
 
 export enum TipoPuntaje{

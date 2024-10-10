@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, NgModule } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { UsuarioService } from '../../servicios/usuario.service';
 import { Mensaje } from '../../interfaces/mensaje';
@@ -22,8 +22,11 @@ export class ChatComponent {
   public mensajes: Mensaje[] = [];
   public nuevoMensaje = "";
   private observableMensajes?: Subscription;
+  public emisor:boolean=false;
 
-  constructor(private usuario: UsuarioService, private dbMensajes: DbMensajesService){}
+
+  constructor(public usuario: UsuarioService, private dbMensajes: DbMensajesService){}
+  
 
   get usuarioLogeado():boolean{
     return this.usuario.datos !== undefined;
@@ -31,7 +34,10 @@ export class ChatComponent {
   ngDestroy(){
     if(this.observableMensajes)
       this.observableMensajes.unsubscribe();
+      this.emisor=false;
   }
+ 
+
   abrirChat(){
     this.observableMensajes = this.dbMensajes.obtenerMensajes().subscribe(data=>{
       data = data.reverse();
@@ -62,14 +68,23 @@ export class ChatComponent {
       const mensaje: Mensaje = {autor: this.usuario.datos.nombre, hora: hora, texto: this.nuevoMensaje}; 
       this.dbMensajes.guardarMensaje(mensaje)
       this.nuevoMensaje = "";
+      this.emisor=true;
     }
   }
 
+
   formatearMensaje(mensaje: Mensaje){
     let fecha = new Date(mensaje.hora);
-    
-    const hora = fecha.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false  });
+  
+    const hora = fecha.toLocaleTimeString([], { month: "2-digit",day: "2-digit",hour: '2-digit', minute: '2-digit', hour12: false  });
     const autor = mensaje.autor.split("@")[0];
+    //ver color msj
+    if(this.usuario.datos?.nombre != mensaje.autor){
+     this.emisor=false;
+   }
+   else{
+    this.emisor=true;   
+   }
     return  hora+"| " + autor + ": " + mensaje.texto;
   }
 }

@@ -3,11 +3,6 @@ import { HomeComponent } from './componentes/home/home.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { QuienSoyComponent } from './componentes/quien-soy/quien-soy.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
-import { AhorcadoComponent } from './componentes/ahorcado/ahorcado.component';
-import { PreguntadosComponent } from './componentes/preguntados/preguntados.component';
-import { MayorMenorComponent } from './componentes/mayor-menor/mayor-menor.component';
-import { BuscaminaComponent } from './componentes/buscamina/buscamina.component';
-
 
 
 export const routes: Routes = [
@@ -16,16 +11,19 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent},
     { path: 'quien-soy', component: QuienSoyComponent},
     { path: 'registro', component: RegistroComponent},
-    {  path: "ahorcado", component: AhorcadoComponent,
-        loadChildren: () => import('./modulos/ahorcado/ahorcado.module').then(m => m.AhorcadoModule)
+    {  path: "ahorcado", 
+        loadComponent: () => import('./componentes/ahorcado/ahorcado.component').then(m => m.AhorcadoComponent)
     },
-    { path: "preguntados", component: PreguntadosComponent,
-        loadChildren: () => import('./modulos/preguntados/preguntados.module').then(m => m.PreguntadosModule)
+    { path: "preguntados", 
+        loadComponent: () => import('./componentes/preguntados/preguntados.component').then(m => m.PreguntadosComponent)
     },
-    { path: "mayor-menor", component: MayorMenorComponent,
-        loadChildren: () => import('./modulos/mayormenor/mayormenor.module').then(m => m.MayormenorModule)
+    { path: "mayor-menor", 
+        loadComponent: () => import('./componentes/mayor-menor/mayor-menor.component').then(m => m.MayorMenorComponent)
     },
-    { path: "buscamina", component: BuscaminaComponent,
-        loadChildren: () => import('./modulos/buscamina/buscamina.module').then(m => m.BuscaminaModule)
+    { path: "buscamina", 
+        loadComponent: () => import('./componentes/buscamina/buscamina.component').then(m => m.BuscaminaComponent)
+    },
+    {path: "encuesta",
+        loadComponent:() => import('./componentes/encuesta/encuesta.component').then(m => m.EncuestaComponent) 
     }
 ];

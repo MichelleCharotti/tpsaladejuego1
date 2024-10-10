@@ -1,4 +1,4 @@
-
+<div>
 <div class="right">
     <button  routerLink="/ahorcado">
          <img src="../../../assets/ahorcado.png" alt="img"> 
@@ -17,7 +17,20 @@
         <p>Buscamina</p>
     </button>
 
-    
+  
+</div>
+
+<div *ngIf="usuario.datos" class="puntaje-personal left">
+        
+    <h3>Puntaje de {{usuario.nombre}}</h3>
+
+    <strong>Ahorcado: {{usuario.datos.puntajeMaxAhorcado}}</strong>
+    <strong>Preguntados: {{usuario.datos.puntajeMaxPreguntados}}</strong>
+    <strong>Mayor > Menor: {{usuario.datos.puntajeMaxMayorMenor}}</strong>
+    <strong>Buscamina: {{usuario.datos.puntajeMaxBuscamina}}</strong>
+
+</div>
+   
 </div>
 
 

@@ -31,6 +31,7 @@ img{
     margin: 3px;
 }
 
+
 .cerrar button{
     position: absolute;
     right: 0px;
@@ -80,10 +81,13 @@ button:hover{
     scrollbar-width: none;  /* Firefox */
 }
 
+
+
 li{
     list-style: none;
     border-bottom: 1px black solid;
 }
+
 
 ul{
     padding: 1px 5px;
@@ -91,4 +95,27 @@ ul{
 
 .chat-box::-webkit-scrollbar {
     display: none;
+}
+
+// .emisor{
+//     font-style: green;
+//     font-weight: bold;
+// }
+
+.enviado{
+    display: block;
+    // float:right;
+    background-color: cornflowerblue;
+    color: white;
+    // min-width: 50.01%;
+    // text-align: left;
+}
+
+.respuestas{
+    display: block;
+    // float:left;
+    background-color: #d7ecd7;
+    color: red;
+    // min-width: 50.01%;
+    // text-align: left;
 }

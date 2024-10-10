@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { EnvironmentInjector, Injectable } from '@angular/core';
 import { Usuario } from '../interfaces/usuario';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,8 @@ export class UsuarioService {
   
   private usuario: Usuario|undefined;
 
-  constructor() { }
+  constructor() {}
+ 
 
   get datos(): Usuario|undefined {
     return this.usuario;
@@ -25,4 +27,5 @@ export class UsuarioService {
   cerrar(){
     this.usuario = undefined;
   }  
+
 }
