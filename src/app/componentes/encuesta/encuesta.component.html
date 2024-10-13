@@ -12,6 +12,7 @@
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
 
+    
 
 </head>
 
@@ -28,33 +29,41 @@
                         <div class="row g-3">
                                 <label for="lastName" class="form-label">Apellido</label>
                                 <input type="text" class="form-control" id="apellido" placeholder="Apellido" formControlName="apellido">
-                                <p class="text-danger" *ngIf="formRepartidor.get('apellido')?.errors">Apellido requerido</p>
+                                <p class="text-danger warningForm" *ngIf="formRepartidor.get('apellido')?.errors
+                                 && formRepartidor.get('apellido')?.touched
+                                " >Apellido requerido</p>
                         </div>
 
 
                             <label for="firstName" class="form-label">Nombre</label>
                             <input type="text" class="form-control" id="nombre" placeholder="Nombre"
                                 formControlName="nombre">
-                            <p class="text-danger" *ngIf="formRepartidor.get('nombre')?.errors">Nombre requerido</p>
+                            <p class="text-danger " *ngIf="formRepartidor.get('nombre')?.errors
+                            && formRepartidor.get('nombre')?.touched
+                            ">Nombre requerido</p>
 
+                            <div>
                             <label for="address" class="form-label">Edad</label>
                             <input type="number" class="form-control" id="edad" placeholder="Edad" formControlName="edad" min="18" max="99">
-                            <p class="text-danger" *ngIf="formRepartidor.get('edad')?.errors">edad requerida</p>
-                            <p class="text-danger" *ngIf="edadGet?.errors?.['min']" class="warningForm">
+                            <p class="text-danger" *ngIf="formRepartidor.get('edad')?.errors
+                            && formRepartidor.get('edad')?.touched">edad requerida</p>
+                            <p class="text-danger warningForm" *ngIf="edadGet?.errors?.['min']" >
                                 debe ser mayor a 18
                             </p>
-                            <p class="text-danger" *ngIf="edadGet?.errors?.['max']" class="warningForm">
+                            <p class="text-danger warningForm" *ngIf="edadGet?.errors?.['max']" >
                                 debe ser menor a 99
                             </p>
- 
+                           </div>
+                            <div>
                             <label for="address" class="form-label">Numero de telefono</label>
                             <input type="number" class="form-control" id="numero" placeholder="Numero"
-                                formControlName="numero" maxlength="10">
-                            <p class="text-danger" *ngIf="formRepartidor.get('numero')?.errors">numero requerido</p>
-                            <p class="text-danger" *ngIf="numeroGet?.errors?.['maxLength']"  class="warningForm">
+                                formControlName="numero" >
+                            <p class="text-danger warningForm" *ngIf="formRepartidor.get('numero')?.errors 
+                            && formRepartidor.get('numero')?.touched">numero requerido</p>
+                            <p class="text-danger warningForm" *ngIf="numeroGet?.hasError('pattern')">
                                 deben ser menos de 10 numeros
                             </p>
-
+                            </div>
 
 
                             <label for="address" class="form-label">Como calificarias la pagina? {{encuestado.rango}} /10</label>
@@ -71,7 +80,8 @@
                             <br>
                             <input type="radio" formControlName="genero" value="otro"> No Binario / Otros
                             <br>
-                            <p class="text-danger" *ngIf="formRepartidor.get('genero')?.errors">genero requerido</p>
+                            <p class="text-danger" *ngIf="formRepartidor.get('genero')?.errors
+                            && formRepartidor.get('genero')?.touched">genero requerido</p>
 
 
                         <div class="col-md-11">
@@ -82,7 +92,7 @@
                         <hr class="my-4">
 
                         <button class="w-100 btn btn-primary btn-lg" type="submit" [disabled]="formRepartidor.invalid"
-                            (click)="enviar()">Enviar</button>
+                           (click)="enviar()" >Enviar</button>
 
                     </form>
             </div>

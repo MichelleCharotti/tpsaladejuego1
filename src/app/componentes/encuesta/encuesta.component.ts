@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class EncuestaComponent implements OnInit{
   public formRepartidor: FormGroup;
   encuestado={
-    apellido:"0",
+    apellido:"",
     nombre:"",
     edad:0,
     numero:0,
@@ -30,7 +30,7 @@ export class EncuestaComponent implements OnInit{
         'apellido': ['',  Validators.required],
         'nombre': ['', Validators.required],
         'edad': ['',  Validators.required,Validators.min(18),Validators.max(99)],
-        'numero': ['', Validators.required,Validators.maxLength(10)],
+        'numero': ['',[ Validators.required,Validators.pattern('^[0-9]{1,10}$')]],
         'rango': ['', Validators.required],
         'genero': ['', Validators.required],
         'conforme': ['', Validators.required],
@@ -46,9 +46,9 @@ export class EncuestaComponent implements OnInit{
     return this.formRepartidor.get('edad');
   }
 
-  enviar()
+
+ enviar()
   {
-    this.formRepartidor.markAllAsTouched();
       this.encuestado.apellido=this.formRepartidor.get('apellido')?.value;
       this.encuestado.nombre=this.formRepartidor.get('nombre')?.value;
       this.encuestado.edad=this.formRepartidor.get('edad')?.value;
@@ -57,7 +57,15 @@ export class EncuestaComponent implements OnInit{
       this.encuestado.genero=this.formRepartidor.get('genero')?.value;
       this.encuestado.conforme=this.formRepartidor.get('conforme')?.value;
 
+  if (this.encuestado.apellido !='' && this.encuestado.nombre !='' && this.encuestado.edad !=null
+    && this.encuestado.numero !=null && this.encuestado.genero !='' )
+  {
       this.encuestasService.agregarEncuesta(this.encuestado);
-    
+      // this.formRepartidor.reset();
+    } else {
+     console.log('Formulario invalido');
+      this.formRepartidor.markAllAsTouched(); 
+     }
+
   }
 }
